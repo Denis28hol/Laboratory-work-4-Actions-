@@ -30,4 +30,5 @@ jobs:
       - name: Lint ProgramCode.py
         run: |
           echo "=== Checking ProgramCode.py ==="
-          pylint ProgramCode.py
+          pylint ./ProgramCode.py
+
