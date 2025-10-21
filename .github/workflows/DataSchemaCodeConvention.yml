@@ -10,17 +10,14 @@ jobs:
     name: SQL Schema Lint
     runs-on: ubuntu-latest
     steps:
-      # Клон репозиторію
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Встановлення sqlfluff
       - name: Install sqlfluff
         run: |
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install sqlfluff
 
-      # Перевірка SQL-схеми з вказанням діалекту
       - name: Lint SQL schema
         run: |
           echo "=== Checking DataSchema.sql ==="
