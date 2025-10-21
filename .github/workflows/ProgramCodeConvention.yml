@@ -11,19 +11,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Клонування репозиторію
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 2. Встановлення Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
+      # 3. Встановлення pylint
       - name: Install pylint
         run: |
           pip install pylint
 
+      # 4. Перевірка файлу ProgramCode.py
       - name: Lint ProgramCode.py
         run: |
           echo "=== Checking ProgramCode.py ==="
-          pylint "./2-SoftwareDesign/2.6-GitHubActions/ProgramCode.py"
+          cd ./2-SoftwareDesign/2.6-GitHubActions
+          pylint ProgramCode.py
