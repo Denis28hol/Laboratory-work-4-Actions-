@@ -30,5 +30,4 @@ jobs:
       - name: Lint ProgramCode.py
         run: |
           echo "=== Checking ProgramCode.py ==="
-          cd ./2-SoftwareDesign/2.6-GitHubActions
           pylint ProgramCode.py
