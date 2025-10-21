@@ -1,0 +1,28 @@
+name: Program Code Convention
+
+on:
+  push:
+    branches: [ SW_LabWork_4 ]
+  workflow_dispatch:
+
+jobs:
+  python_lint:
+    name: Python Code Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install pylint
+        run: |
+          pip install pylint
+
+      - name: Lint ProgramCode.py
+        run: |
+          echo "=== Checking ProgramCode.py ==="
+          pylint 2-SoftwareDesign/2.6-GitHubActions/ProgramCode.py
