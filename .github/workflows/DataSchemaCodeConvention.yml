@@ -1,0 +1,35 @@
+name: Data Schema Code Convention
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  sql_check:
+    name: SQL Schema Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install sqlfluff
+        run: |
+          pip install sqlfluff
+
+      - name: Lint SQL schema
+        run: |
+          echo "=== Checking DataSchema.sql ==="
+          sqlfluff lint DataSchema.sql
+
+  json_check:
+    name: JSON Schema Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate JSON schema
+        run: |
+          echo "=== Checking DataSchema.json ==="
+          jq empty DataSchema.json
