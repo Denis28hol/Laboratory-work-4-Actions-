@@ -1,0 +1,34 @@
+name: Print Software Versions
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  data_processing_versions:
+    name: Data Processing Software Versions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show backend tools versions
+        run: |
+          echo "=== Backend Environment ==="
+          echo "Python version:"
+          python3 --version
+          echo "Node.js version:"
+          node --version
+          echo "NPM version:"
+          npm --version
+          echo "Curl version (for REST API like Monobank):"
+          curl --version | head -n 1
+          echo "Power BI CLI (if installed globally):"
+          npm list -g powerbi-cli || echo "Power BI CLI not installed"
+
+  database_versions:
+    name: Database Software Versions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show PostgreSQL version
+        run: |
+          echo "=== Database Environment ==="
+          psql --version
