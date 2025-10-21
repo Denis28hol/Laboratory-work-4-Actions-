@@ -22,6 +22,7 @@ jobs:
 
       # Перевірка SQL-схеми з вказанням діалекту
       - name: Lint SQL schema
-        run: |
-          echo "=== Checking DataSchema.sql ==="
-          sqlfluff lint DataSchema.sql --dialect=postgres
+  run: |
+    echo "=== Checking DataSchema.sql ==="
+    sqlfluff lint --dialect=postgres DataSchema.sql
+
