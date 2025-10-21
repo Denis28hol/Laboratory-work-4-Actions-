@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install sqlfluff
+      - name: Install Python and sqlfluff
         run: |
           python -m pip install --upgrade pip
           pip install sqlfluff
@@ -21,4 +21,4 @@ jobs:
       - name: Lint SQL schema
         run: |
           echo "=== Checking DataSchema.sql ==="
-          sqlfluff lint DataSchema.sql --dialect=postgres
+          sqlfluff lint DataSchema.sql
