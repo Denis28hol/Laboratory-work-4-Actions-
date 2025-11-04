@@ -1,4 +1,4 @@
-name: Print Software Versions
+name: Program Code Convention
 
 on:
   push:
@@ -6,31 +6,29 @@ on:
   workflow_dispatch:
 
 jobs:
-  data_processing_versions:
-    name: Data Processing Software Versions
+  python_lint:
+    name: Python Code Lint
     runs-on: ubuntu-latest
-    steps:
-      - name: Show backend tools versions
-        run: |
-          echo "=== Backend Environment ==="
-          echo "Python version:"
-          python3 --version
-          echo "Node.js version:"
-          node --version
-          echo "NPM version:"
-          npm --version
-          echo "Curl version (for REST API like Monobank):"
-          curl --version | head -n 1
-          echo "Power BI CLI (if installed globally):"
-          npm list -g powerbi-cli || echo "Power BI CLI not installed"
 
-  database_versions:
-    name: Database Software Versions
-    runs-on: ubuntu-latest
     steps:
-      - name: Show PostgreSQL version
-        run: |
-          echo "=== Database Environment ==="
-          psql --version
+      # 1. Клонування репозиторію
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
+      # 2. Встановлення Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      # 3. Встановлення pylint
+      - name: Install pylint
+        run: |
+          pip install pylint
+
+      # 4. Перевірка файлу ProgramCode.py
+      - name: Lint program_code.py
+        run: |
+         echo "=== Checking program_code.py ==="
+         pylint program_code.py --exit-zero
 
